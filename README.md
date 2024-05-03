@@ -76,8 +76,7 @@ To report an issue, please follow these steps:
 
 ## Acknowledgements
 
-The work described in this paper was partially supported by the National Key Research and Development Program
-of China (2022YFD2400501) and the Hainan Yazhou Bay Seed Laboratory (B21HJ0110).
+The work described in this paper was partially supported by the National Key Research and Development Program of China (2022YFD2400501), the Hainan Yazhou Bay Seed Laboratory (B21HJ0110) and Hainan Provincial Natural Science Foundation of China (321QN278).
 
 ## Contact Information
 
