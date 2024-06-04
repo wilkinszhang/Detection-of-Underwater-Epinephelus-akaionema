@@ -17,6 +17,7 @@ from ultralytics.yolo.utils.plotting import feature_visualization
 from ultralytics.yolo.utils.torch_utils import (fuse_conv_and_bn, fuse_deconv_and_bn, initialize_weights,
                                                 intersect_dicts, make_divisible, model_info, scale_img, time_sync)
 from ultralytics.nn.modules.GAM_Attention import GAM_Attention
+from ultralytics.nn.modules.MIPAM import MIPAM
 from ultralytics.nn.modules.EMA import EMA
 try:
     import thop
@@ -520,6 +521,11 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
         elif m is nn.BatchNorm2d:
             args = [ch[f]]
         elif m is GAM_Attention:
+            c1, c2 = ch[f], args[0]
+            if c2 != nc:  # if not output
+                c2 = make_divisible(min(c2, max_channels) * width, 8)
+            args = [c1, c2, *args[1:]]
+        elif m is MIPAM:
             c1, c2 = ch[f], args[0]
             if c2 != nc:  # if not output
                 c2 = make_divisible(min(c2, max_channels) * width, 8)
